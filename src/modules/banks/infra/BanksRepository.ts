@@ -3,7 +3,7 @@ import { BanksResponse } from '../domain/BanksResponse.ts'
 
 const API_URL = import.meta.env.VITE_API_URL ?? ''
 
-export function createApiBanksRepository(): BankRepository {
+export function createBanksRepository(): BankRepository {
   return {
     getBanks
   }

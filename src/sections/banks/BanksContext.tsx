@@ -8,10 +8,14 @@ import useLocalStorage from '../../hooks/useLocalStorage.ts'
 interface BanksContextProps {
   banks: Bank[]
   getListOfBanks: () => Promise<void>
+  loading: boolean
+  setLoading: (loading: boolean) => void
 }
 export const BanksContext = createContext<BanksContextProps>({
   banks: [],
-  getListOfBanks: () => Promise.resolve()
+  getListOfBanks: () => Promise.resolve(),
+  loading: false,
+  setLoading: () => {}
 })
 
 export const BanksContextProvider = ({
@@ -20,18 +24,23 @@ export const BanksContextProvider = ({
 }: PropsWithChildren<{ repository: BankRepository }>) => {
   const [banks, setBanks] = useState<Bank[]>([])
   const [data, setData] = useLocalStorage<Bank[]>('banks', banks)
+  const [loading, setLoading] = useState(false)
   const getListOfBanks = async (): Promise<void> => {
     if (data && data.length > 0) {
       setBanks(data)
     } else {
+      setLoading(true)
       const banks: BanksResponse = await getBanks(repository)
       setBanks(banks.data)
       setData(banks.data)
+      setLoading(false)
     }
   }
 
   return (
-    <BanksContext.Provider value={{ banks, getListOfBanks }}>
+    <BanksContext.Provider
+      value={{ banks, getListOfBanks, loading, setLoading }}
+    >
       {children}
     </BanksContext.Provider>
   )

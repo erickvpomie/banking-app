@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import BankList from '../../sections/banks/BankList.tsx'
 
 const HomePage = () => {
-  const { banks, getListOfBanks } = useBanksContext()
+  const { banks, getListOfBanks, loading } = useBanksContext()
 
   useEffect(() => {
     getListOfBanks().catch(console.error)
@@ -19,7 +19,7 @@ const HomePage = () => {
             <h1 className='text-4xl font-bold text-moonlit'>Bancos</h1>
             <p className='text-moonlit'>Listado de bancos en México</p>
           </div>
-          <BankList banks={banks} />
+          {loading ? <div>Cargando...</div> : <BankList banks={banks} />}
         </main>
       </div>
     </div>
