@@ -9,7 +9,8 @@ export default {
         'space-blue': '#016ff0',
         'space-gray': '#f0f0f0',
         'space-red': '#d75449',
-        'space-grey-dark': '#272a32'
+        'space-grey-dark': '#1d1e24',
+        moonlit: '#f5f5f7'
       }
     }
   },

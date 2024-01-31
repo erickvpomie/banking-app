@@ -1,5 +1,5 @@
-import { Bank } from './Bank.ts'
+import { BanksResponse } from './BanksResponse.ts'
 
 export interface BankRepository {
-  getBanks(): Promise<Bank[]>
+  getBanks(): Promise<BanksResponse>
 }

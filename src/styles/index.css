@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    @apply bg-space-black text-space-light antialiased scroll-smooth select-none;
+    font-family: Outfit, sans-serif;
+    scrollbar-gutter: stable both-edges;
+}
+
+* {
+    color-scheme: dark;
+}

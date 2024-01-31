@@ -1,11 +1,14 @@
-const API_URL = 'https://dev.obtenmas.com/catom/api/challenge/banks'
+import { BankRepository } from '../domain/BankRepository.ts'
+import { BanksResponse } from '../domain/BanksResponse.ts'
 
-export function createApiBanksRepository() {
+const API_URL = import.meta.env.VITE_API_URL ?? ''
+
+export function createApiBanksRepository(): BankRepository {
   return {
     getBanks
   }
 }
-async function getBanks() {
+async function getBanks(): Promise<BanksResponse> {
   const response = await fetch(`${API_URL}`)
   return response.json()
 }
